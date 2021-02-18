@@ -37,9 +37,35 @@ los mismos.
 
 # Construccion de modelos
 
+
+def NuevoCatalogo():
+    catalogo = {
+        "videos" : None
+        "categorias" : None
+    }
+    catalogo["videos"] = lt.newList("SINGLE-LINKED")
+    catalogo["categorias"] = lt.newList("SINGLE-LINKED")
+    return catalogo
+
 # Funciones para agregar informacion al catalogo
 
+
+def addVideo(catalogo, video):
+    lt.addLast(catalogo["videos"], video)
+
+
+def addCategoria(catalogo, categoria):
+    cat = newCategoria(categoria['id'], categoria['name'])
+    lt.addLast(catalogo['categorias'], cat)
+
+
 # Funciones para creacion de datos
+
+def newCategoria(id, name):
+    categoria = {'id': '', 'name': ''}
+    categoria['id'] = id
+    categoria['name'] = name
+    return categoria
 
 # Funciones de consulta
 
