@@ -33,12 +33,15 @@ Presenta el menu de opciones y por cada seleccion
 se hace la solicitud al controlador para ejecutar la
 operación solicitada
 """
-#Hola
+# Hola
 
 def printMenu():
     print("Bienvenido")
-    print("1- Cargar información en el catálogo")
-    print("2- ")
+    print("1- Consultar los videos con más visitas en una categoría y país específicos")
+    print("2- Consultar el video que ha sido trending más días en un país específico")
+    print("3- Consultar el video que ha sido trending más días en una categoría específica")
+    print("4- Consultar los videos con más likes en un país y tag específicos")
+
 
 catalog = None
 
@@ -49,10 +52,26 @@ while True:
     printMenu()
     inputs = input('Seleccione una opción para continuar\n')
     if int(inputs[0]) == 1:
-        print("Cargando información de los archivos ....")
+        # Por completar
+        categ = input("Escriba una categoría: ")
+        pais = input("Escriba un país: ")
+        print("Cargando información de los videos ....")
 
     elif int(inputs[0]) == 2:
-        pass
+        # Por completar
+        pais = input("Escriba un país: ")
+        print("Cargando información del video ....")
+
+    elif int(inputs[0]) == 3:
+        # Por completar
+        categ = input("Escriba una categoría: ")
+        print("Cargando información del video ....")
+
+    elif int(inputs[0]) == 4:
+        # Por completar
+        tag = input("Escriba un tag: ")
+        pais = input("Escriba un país: ")
+        print("Cargando información de los videos ....")
 
     else:
         sys.exit(0)

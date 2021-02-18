@@ -40,8 +40,8 @@ los mismos.
 
 def NuevoCatalogo():
     catalogo = {
-        "videos" : None
-        "categorias" : None
+        "videos": None,
+        "categorias": None,
     }
     catalogo["videos"] = lt.newList("SINGLE-LINKED")
     catalogo["categorias"] = lt.newList("SINGLE-LINKED")
