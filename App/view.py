@@ -88,7 +88,7 @@ while True:
         pais = input("Escriba un país: ")
         size = input("Indique tamaño de la muestra: ")
         print("Sorteando videos ....")
-        result = controller.sortVideos(catalog, int(size))
+        result = controller.sortVideos(catalog, int(size), pais, categ)
         print("Para la muestra de", size, " elementos, el tiempo (mseg) es: ",
                                             str(result[0]))
         printResults(result[1])

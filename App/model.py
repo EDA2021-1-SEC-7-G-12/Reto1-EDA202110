@@ -76,8 +76,13 @@ def cmpVideosByViews(video1, video2):
     return (int(video1["views"]) < int(video2["views"]))
 # Funciones de ordenamiento
 
-def sortVideos(catalog, size):
-    sub_list = lt.subList(catalog['videos'], 1, size)
+def sortVideos(catalog, size, country, category_name):
+    catalog2 = lt.newList(catalog["videos"]["type"],catalog["videos"]["cmpfunction"])
+    print(catalog["videos"].keys())
+    for x in catalog["videos"]["elements"]:
+        if (x["category_name"] == category_name) and (x["country"] == country):
+            lt.addFirst(catalog2,x)
+    sub_list = lt.subList(catalog2, 1, size)
     sub_list = sub_list.copy()
     start_time = time.process_time()
     sorted_list = sa.sort(sub_list, cmpVideosByViews)
