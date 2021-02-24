@@ -35,6 +35,7 @@ operación solicitada
 """
 # Hola
 
+
 def printMenu():
     print("Bienvenido")
     print("1- Cargar datos de videos")
@@ -42,6 +43,8 @@ def printMenu():
     print("3- Consultar el video que ha sido trending más días en un país específico")
     print("4- Consultar el video que ha sido trending más días en una categoría específica")
     print("5- Consultar los videos con más likes en un país y tag específicos")
+    print("0- Salir de la aplicacion")
+
 
 def loadData(catalog):
     controller.loadData(catalog)
@@ -49,6 +52,7 @@ def loadData(catalog):
 
 def initCatalog():
     return controller.initCatalog()
+
 
 catalog = None
 
@@ -59,6 +63,7 @@ while True:
     printMenu()
     inputs = input('Seleccione una opción para continuar\n')
     if int(inputs[0]) == 1:
+        tipo = input("Escoja el tipo de representación de la lista (ARRAY_LIST o LINKED_LIST): ")
         print("Cargando información de los archivos ....")
         catalog = initCatalog()
         loadData(catalog)
