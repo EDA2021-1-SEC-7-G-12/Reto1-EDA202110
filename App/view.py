@@ -64,8 +64,8 @@ while True:
         loadData(catalog)
         print('Videos cargados: ' + str(lt.size(catalog['videos'])))
         print('Categorias cargadas: ' + str(lt.size(catalog['categorias'])))
-        
-    if int(inputs[0]) == 2:
+
+    elif int(inputs[0]) == 2:
         # Por completar
         categ = input("Escriba una categoría: ")
         pais = input("Escriba un país: ")
