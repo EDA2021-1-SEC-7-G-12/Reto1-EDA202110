@@ -71,4 +71,12 @@ def newCategoria(id, name):
 
 # Funciones utilizadas para comparar elementos dentro de una lista
 
+def cmpVideosByViews(video1, video2):
+"""
+Devuelve verdadero (True) si los 'views' de video1 son menores que los del video2
+Args:
+video1: informacion del primer video que incluye su valor 'views'
+video2: informacion del segundo video que incluye su valor 'views'
+"""
+    return int(video1["views"]) < int(video2["views"])
 # Funciones de ordenamiento
