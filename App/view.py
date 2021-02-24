@@ -65,7 +65,7 @@ while True:
     if int(inputs[0]) == 1:
         tipo = input("Escoja el tipo de representación de la lista (ARRAY_LIST o LINKED_LIST): ")
         print("Cargando información de los archivos ....")
-        catalog = initCatalog()
+        catalog = initCatalog(tipo)
         loadData(catalog)
         print('Videos cargados: ' + str(lt.size(catalog['videos'])))
         print('Categorias cargadas: ' + str(lt.size(catalog['categorias'])))
