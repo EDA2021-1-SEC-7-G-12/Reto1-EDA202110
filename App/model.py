@@ -38,13 +38,13 @@ los mismos.
 # Construccion de modelos
 
 
-def NuevoCatalogo():
+def nuevoCatalogo(tipo):
     catalogo = {
         "videos": None,
         "categorias": None,
     }
-    catalogo["videos"] = lt.newList("SINGLE-LINKED")
-    catalogo["categorias"] = lt.newList("SINGLE-LINKED")
+    catalogo["videos"] = lt.newList(tipo)
+    catalogo["categorias"] = lt.newList(tipo)
     return catalogo
 
 # Funciones para agregar informacion al catalogo
