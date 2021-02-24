@@ -50,8 +50,8 @@ def loadData(catalog):
     controller.loadData(catalog)
 
 
-def initCatalog():
-    return controller.initCatalog()
+def initCatalog(tipo):
+    return controller.initCatalog(tipo)
 
 
 catalog = None
