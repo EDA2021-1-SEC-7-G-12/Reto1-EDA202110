@@ -37,11 +37,18 @@ operación solicitada
 
 def printMenu():
     print("Bienvenido")
-    print("1- Consultar los videos con más visitas en una categoría y país específicos")
-    print("2- Consultar el video que ha sido trending más días en un país específico")
-    print("3- Consultar el video que ha sido trending más días en una categoría específica")
-    print("4- Consultar los videos con más likes en un país y tag específicos")
+    print("1- Cargar datos de videos")
+    print("2- Consultar los videos con más visitas en una categoría y país específicos")
+    print("3- Consultar el video que ha sido trending más días en un país específico")
+    print("4- Consultar el video que ha sido trending más días en una categoría específica")
+    print("5- Consultar los videos con más likes en un país y tag específicos")
 
+def loadData(catalog):
+    controller.loadData(catalog)
+
+
+def initCatalog():
+    return controller.initCatalog()
 
 catalog = None
 
@@ -52,22 +59,29 @@ while True:
     printMenu()
     inputs = input('Seleccione una opción para continuar\n')
     if int(inputs[0]) == 1:
+        print("Cargando información de los archivos ....")
+        catalog = initCatalog()
+        loadData(catalog)
+        print('Videos cargados: ' + str(lt.size(catalog['videos'])))
+        print('Categorias cargadas: ' + str(lt.size(catalog['categorias'])))
+        
+    if int(inputs[0]) == 2:
         # Por completar
         categ = input("Escriba una categoría: ")
         pais = input("Escriba un país: ")
         print("Cargando información de los videos ....")
 
-    elif int(inputs[0]) == 2:
+    elif int(inputs[0]) == 3:
         # Por completar
         pais = input("Escriba un país: ")
         print("Cargando información del video ....")
 
-    elif int(inputs[0]) == 3:
+    elif int(inputs[0]) == 4:
         # Por completar
         categ = input("Escriba una categoría: ")
         print("Cargando información del video ....")
 
-    elif int(inputs[0]) == 4:
+    elif int(inputs[0]) == 5:
         # Por completar
         tag = input("Escriba un tag: ")
         pais = input("Escriba un país: ")
