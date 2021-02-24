@@ -35,6 +35,18 @@ operación solicitada
 """
 # Hola
 
+def printResults(ord_videos, sample=10):
+    size = lt.size(ord_videos)
+    if size > sample:
+        print("Los primeros ", sample, " videos ordenados son:")
+        i=1
+        while i <= sample:
+            video = lt.getElement(ord_videos,i)
+            print('Trending date: ' + video['trending_date'] + ' Title: ' +
+                video['title'] + ' Channel title: ' + video['channel_title']
+                + ' Publish time: ' + video['publish_time'] + ' Views: ' + video['views'] 
+                + ' Likes: ' + video['likes'] + ' Dislikes: ' + video['dislikes'])
+            i+=1
 
 def printMenu():
     print("Bienvenido")
@@ -74,7 +86,12 @@ while True:
         # Por completar
         categ = input("Escriba una categoría: ")
         pais = input("Escriba un país: ")
-        print("Cargando información de los videos ....")
+        size = input("Indique tamaño de la muestra: ")
+        print("Sorteando videos ....")
+        result = controller.sortVideos(catalog, int(size))
+        print("Para la muestra de", size, " elementos, el tiempo (mseg) es: ",
+                                            str(result[0]))
+        printResults(result[1])
 
     elif int(inputs[0]) == 3:
         # Por completar

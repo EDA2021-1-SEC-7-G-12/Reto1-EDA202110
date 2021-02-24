@@ -64,5 +64,6 @@ def loadCategorias(catalogo):
 # Funciones para la carga de datos
 
 # Funciones de ordenamiento
-
+def sortVideos(catalog, size):
+    return model.sortVideos(catalog, size)
 # Funciones de consulta sobre el catálogo
