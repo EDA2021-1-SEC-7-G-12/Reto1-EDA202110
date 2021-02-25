@@ -29,6 +29,8 @@ import time
 import config as cf
 from DISClib.ADT import list as lt
 from DISClib.Algorithms.Sorting import shellsort as sa
+from DISClib.Algorithms.Sorting import insertionsort as si
+from DISClib.Algorithms.Sorting import selectionsort as ss
 assert cf
 
 """
@@ -82,31 +84,38 @@ def sacaridcategoria(catalogo,nombre_categoria):
 # Funciones utilizadas para comparar elementos dentro de una lista
 
 def cmpVideosByViews(video1, video2):
-    return (int(video1["views"]) < int(video2["views"]))
+    return (int(video1["views"]) > int(video2["views"]))
 # Funciones de ordenamiento
 
-def sortVideos(catalog, size, country, category_name):
+def sortVideos(catalog, size, country, category_name,tiposort):
     catalog2 = lt.newList(catalog["videos"]["type"],catalog["videos"]["cmpfunction"])
     idcategoria = sacaridcategoria(catalog,category_name)
     if catalog["videos"]["type"] == "ARRAY_LIST":
         for x in catalog["videos"]["elements"]:
             if (x["category_id"] == idcategoria) and (x["country"] == country):
                 lt.addFirst(catalog2,x)
-    elif catalog["videos"]["type"] == "LINKED_LIST":
-        for x in range(catalog["size"]):
-            if (lt.getElement(catalog[x])["category_id"] == idcategoria) and lt.getElement(catalog[x])["country"] == country:
-                lt.addFirst(catalog2,x)
+    elif catalog["videos"]["type"] == "LINKED_LIST" or catalog["videos"]["type"] == "SINGLE_LINKED":
+        for x in range(catalog["videos"]["size"]):
+            if (lt.getElement(catalog["videos"],x)["category_id"] == idcategoria) and (lt.getElement(catalog["videos"],x)["country"] == country):
+                lt.addFirst(catalog2,lt.getElement(catalog["videos"],x))
     if catalog2["size"] < size:
         print("Excede el tamaño de la lista, ingrese un valor válido")
     else:
         sub_list = lt.subList(catalog2, 1, size)
         sub_list = sub_list.copy()
         start_time = time.process_time()
-        sorted_list = sa.sort(sub_list, cmpVideosByViews)
-        stop_time = time.process_time()
-        elapsed_time_mseg = (stop_time - start_time)*1000
-        print(start_time)
-        print(stop_time)
-        print(sorted_list)
-        return elapsed_time_mseg, sorted_list
-        
+        if tiposort == "shell":
+            sorted_list = sa.sort(sub_list, cmpVideosByViews)
+            stop_time = time.process_time()
+            elapsed_time_mseg = (stop_time - start_time)*1000
+            return elapsed_time_mseg, sorted_list
+        elif tiposort == "insertion":
+            sorted_list = si.sort(sub_list, cmpVideosByViews)
+            stop_time = time.process_time()
+            elapsed_time_mseg = (stop_time - start_time)*1000
+            return elapsed_time_mseg, sorted_list
+        elif tiposort == "selection":
+            sorted_list = ss.sort(sub_list, cmpVideosByViews)
+            stop_time = time.process_time()
+            elapsed_time_mseg = (stop_time - start_time)*1000
+            return elapsed_time_mseg, sorted_list

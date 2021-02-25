@@ -35,12 +35,12 @@ operación solicitada
 """
 # Hola
 
-def printResults(ord_videos, sample=10):
+def printResults(ord_videos, mostrardos):
     size = lt.size(ord_videos)
-    if size > sample:
-        print("Los primeros ", sample, " videos ordenados son:")
+    if size >= mostrardos:
+        print("Los primeros ", mostrardos, " videos ordenados son:")
         i=1
-        while i <= sample:
+        while i <= mostrardos:
             video = lt.getElement(ord_videos,i)
             print('Trending date: ' + video['trending_date'] + ' Title: ' +
                 video['title'] + ' Channel title: ' + video['channel_title']
@@ -87,12 +87,13 @@ while True:
         categ = input("Escriba una categoría: ")
         pais = input("Escriba un país: ")
         size = input("Indique tamaño de la muestra: ")
+        tiposort = input("Ingrese el tipo de sorteo deseado (insertion, shell o selection)")
         print("Sorteando videos ....")
-        result = controller.sortVideos(catalog, int(size), pais, categ)
+        result = controller.sortVideos(catalog, int(size), pais, categ, tiposort)
         if not (result==None):
             print("Para la muestra de", size, " elementos, el tiempo (mseg) es: ",
                                             str(result[0]))
-            printResults(result[1])
+            printResults(result[1], int(size))
 
     elif int(inputs[0]) == 3:
         # Por completar

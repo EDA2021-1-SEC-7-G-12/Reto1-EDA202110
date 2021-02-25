@@ -50,7 +50,7 @@ def loadData(catalogo):
 
 
 def loadVideos(catalogo):
-    videosfile = cf.data_dir + 'videos/videos-small.csv'
+    videosfile = cf.data_dir + 'videos/videos-large.csv'
     input_file = csv.DictReader(open(videosfile, encoding='utf-8'))
     for video in input_file:
         model.addVideo(catalogo, video)
@@ -59,12 +59,11 @@ def loadVideos(catalogo):
 def loadCategorias(catalogo):
     categoriasfile = cf.data_dir + 'videos/category-id.csv'
     input_file = csv.DictReader(open(categoriasfile, encoding='utf-8'))
-    print(input_file)
     for categoria in input_file:
         model.addCategoria(catalogo, categoria)
 # Funciones para la carga de datos
 
 # Funciones de ordenamiento
-def sortVideos(catalog, size, country, category_name):
-    return model.sortVideos(catalog, size, country, category_name)
+def sortVideos(catalog, size, country, category_name, tiposort):
+    return model.sortVideos(catalog, size, country, category_name, tiposort)
 # Funciones de consulta sobre el catálogo
