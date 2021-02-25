@@ -25,11 +25,11 @@
  """
 
 
+import time
 import config as cf
 from DISClib.ADT import list as lt
 from DISClib.Algorithms.Sorting import shellsort as sa
 assert cf
-import time
 
 """
 Se define la estructura de un catálogo de videos. El catálogo tendrá dos listas, una para los videos, otra para las categorias de
@@ -100,10 +100,13 @@ def sortVideos(catalog, size, country, category_name):
         print("Excede el tamaño de la lista, ingrese un valor válido")
     else:
         sub_list = lt.subList(catalog2, 1, size)
-        print(sub_list)
         sub_list = sub_list.copy()
         start_time = time.process_time()
         sorted_list = sa.sort(sub_list, cmpVideosByViews)
         stop_time = time.process_time()
         elapsed_time_mseg = (stop_time - start_time)*1000
+        print(start_time)
+        print(stop_time)
+        print(sorted_list)
         return elapsed_time_mseg, sorted_list
+        

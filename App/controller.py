@@ -50,7 +50,7 @@ def loadData(catalogo):
 
 
 def loadVideos(catalogo):
-    videosfile = cf.data_dir + 'videos/videos-large.csv'
+    videosfile = cf.data_dir + 'videos/videos-small.csv'
     input_file = csv.DictReader(open(videosfile, encoding='utf-8'))
     for video in input_file:
         model.addVideo(catalogo, video)
