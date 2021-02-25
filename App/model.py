@@ -119,26 +119,3 @@ def sortVideos(catalog, size, country, category_name,tiposort):
             stop_time = time.process_time()
             elapsed_time_mseg = (stop_time - start_time)*1000
             return elapsed_time_mseg, sorted_list
-
-def sortVideosTest(catalog, size, tiposort):
-    if catalog["videos"]["size"] < size:
-        print("Excede el tamaño de la lista, ingrese un valor válido")
-    else:
-        sub_list = lt.subList(catalog["videos"], 1, size)
-        sub_list = sub_list.copy()
-        start_time = time.process_time()
-        if tiposort == "shell":
-            sorted_list = sa.sort(sub_list, cmpVideosByViews)
-            stop_time = time.process_time()
-            elapsed_time_mseg = (stop_time - start_time)*1000
-            return elapsed_time_mseg, sorted_list
-        elif tiposort == "insertion":
-            sorted_list = si.sort(sub_list, cmpVideosByViews)
-            stop_time = time.process_time()
-            elapsed_time_mseg = (stop_time - start_time)*1000
-            return elapsed_time_mseg, sorted_list
-        elif tiposort == "selection":
-            sorted_list = ss.sort(sub_list, cmpVideosByViews)
-            stop_time = time.process_time()
-            elapsed_time_mseg = (stop_time - start_time)*1000
-            return elapsed_time_mseg, sorted_list
