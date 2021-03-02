@@ -31,10 +31,13 @@ from DISClib.ADT import list as lt
 from DISClib.Algorithms.Sorting import shellsort as sa
 from DISClib.Algorithms.Sorting import insertionsort as si
 from DISClib.Algorithms.Sorting import selectionsort as ss
+from DISClib.Algorithms.Sorting import mergesort as ms
+from DISClib.Algorithms.Sorting import quicksort as qs
 assert cf
 
 """
-Se define la estructura de un catálogo de videos. El catálogo tendrá dos listas, una para los videos, otra para las categorias de
+Se define la estructura de un catálogo de videos. El catálogo tendrá
+dos listas, una para los videos, otra para las categorias de
 los mismos.
 """
 
@@ -72,32 +75,35 @@ def newCategoria(id, name):
 
 # Funciones de consulta
 
-def sacaridcategoria(catalogo,nombre_categoria):
+
+def sacaridcategoria(catalogo, nombre_categoria):
     lista = catalogo["categorias"]
     categoria = -1
     for x in range(lista["size"]):
-        elemento = lt.getElement(lista,x)
+        elemento = lt.getElement(lista, x)
         if elemento["name"] == nombre_categoria:
             categoria = elemento["id"]
     return categoria
 
 # Funciones utilizadas para comparar elementos dentro de una lista
 
+
 def cmpVideosByViews(video1, video2):
     return (int(video1["views"]) > int(video2["views"]))
 # Funciones de ordenamiento
 
-def sortVideos(catalog, size, country, category_name,tiposort):
-    catalog2 = lt.newList(catalog["videos"]["type"],catalog["videos"]["cmpfunction"])
-    idcategoria = sacaridcategoria(catalog,category_name)
+
+def sortVideos(catalog, size, country, category_name, tiposort):
+    catalog2 = lt.newList(catalog["videos"]["type"], catalog["videos"]["cmpfunction"])
+    idcategoria = sacaridcategoria(catalog, category_name)
     if catalog["videos"]["type"] == "ARRAY_LIST":
         for x in catalog["videos"]["elements"]:
             if (x["category_id"] == idcategoria) and (x["country"] == country):
-                lt.addFirst(catalog2,x)
+                lt.addFirst(catalog2, x)
     elif catalog["videos"]["type"] == "LINKED_LIST" or catalog["videos"]["type"] == "SINGLE_LINKED":
         for x in range(catalog["videos"]["size"]):
-            if (lt.getElement(catalog["videos"],x)["category_id"] == idcategoria) and (lt.getElement(catalog["videos"],x)["country"] == country):
-                lt.addFirst(catalog2,lt.getElement(catalog["videos"],x))
+            if (lt.getElement(catalog["videos"], x)["category_id"] == idcategoria) and (lt.getElement(catalog["videos"], x)["country"] == country):
+                lt.addFirst(catalog2, lt.getElement(catalog["videos"], x))
     if catalog2["size"] < size:
         print("Excede el tamaño de la lista, ingrese un valor válido")
     else:
@@ -119,6 +125,17 @@ def sortVideos(catalog, size, country, category_name,tiposort):
             stop_time = time.process_time()
             elapsed_time_mseg = (stop_time - start_time)*1000
             return elapsed_time_mseg, sorted_list
+        elif tiposort == "merge":
+            sorted_list = ms.sort(sub_list, cmpVideosByViews)
+            stop_time = time.process_time()
+            elapsed_time_mseg = (stop_time - start_time)*1000
+            return elapsed_time_mseg, sorted_list
+        elif tiposort == "quick":
+            sorted_list = qs.sort(sub_list, cmpVideosByViews)
+            stop_time = time.process_time()
+            elapsed_time_mseg = (stop_time - start_time)*1000
+            return elapsed_time_mseg, sorted_list
+
 
 def sortVideosTest(catalog, size, tiposort):
     if catalog["videos"]["size"] < size:
@@ -139,6 +156,16 @@ def sortVideosTest(catalog, size, tiposort):
             return elapsed_time_mseg, sorted_list
         elif tiposort == "selection":
             sorted_list = ss.sort(sub_list, cmpVideosByViews)
+            stop_time = time.process_time()
+            elapsed_time_mseg = (stop_time - start_time)*1000
+            return elapsed_time_mseg, sorted_list
+        elif tiposort == "merge":
+            sorted_list = ms.sort(sub_list, cmpVideosByViews)
+            stop_time = time.process_time()
+            elapsed_time_mseg = (stop_time - start_time)*1000
+            return elapsed_time_mseg, sorted_list
+        elif tiposort == "quick":
+            sorted_list = qs.sort(sub_list, cmpVideosByViews)
             stop_time = time.process_time()
             elapsed_time_mseg = (stop_time - start_time)*1000
             return elapsed_time_mseg, sorted_list

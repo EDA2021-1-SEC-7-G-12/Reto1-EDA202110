@@ -35,18 +35,24 @@ operación solicitada
 """
 # Hola
 
+default_limit = 1000
+sys.setrecursionlimit(default_limit*10)
+
+
 def printResults(ord_videos, mostrardos):
     size = lt.size(ord_videos)
     if size >= mostrardos:
         print("Los primeros ", mostrardos, " videos ordenados son:")
-        i=1
+        i = 1
         while i <= mostrardos:
-            video = lt.getElement(ord_videos,i)
+            video = lt.getElement(ord_videos, i)
             print('Trending date: ' + video['trending_date'] + ' Title: ' +
-                video['title'] + ' Channel title: ' + video['channel_title']
-                + ' Publish time: ' + video['publish_time'] + ' Views: ' + video['views'] 
-                + ' Likes: ' + video['likes'] + ' Dislikes: ' + video['dislikes'])
-            i+=1
+                  video['title'] + ' Channel title: ' + video['channel_title']
+                  + ' Publish time: ' + video['publish_time'] + ' Views: ' +
+                  video['views'] + ' Likes: ' + video['likes'] + ' Dislikes: '
+                  + video['dislikes'])
+            i += 1
+
 
 def printMenu():
     print("Bienvenido")
@@ -87,10 +93,10 @@ while True:
         categ = input("Escriba una categoría: ")
         pais = input("Escriba un país: ")
         size = input("Indique tamaño de la muestra: ")
-        tiposort = input("Ingrese el tipo de sorteo deseado (insertion, shell o selection): ")
+        tiposort = input("Ingrese el tipo de sorteo deseado (insertion, shell, selection, quick o merge): ")
         print("Sorteando videos ....")
         result = controller.sortVideos(catalog, int(size), pais, categ, tiposort)
-        if not (result==None):
+        if not (result is None):
             print("Para la muestra de", size, " elementos, el tiempo (mseg) es: ",
                                             str(result[0]))
             printResults(result[1], int(size))
@@ -110,14 +116,15 @@ while True:
         tag = input("Escriba un tag: ")
         pais = input("Escriba un país: ")
         print("Cargando información de los videos ....")
+
     elif int(inputs[0]) == 6:
         size = input("Indique tamaño de la muestra: ")
-        tiposort = input("Ingrese el tipo de sorteo deseado (insertion, shell o selection): ")
+        tiposort = input("Ingrese el tipo de sorteo deseado (insertion, shell, selection, quick o merge): ")
         print("Sorteando videos ....")
         result = controller.sortVideosTest(catalog, int(size), tiposort)
-        if not (result==None):
+        if not (result is None):
             print("Para la muestra de", size, " elementos, el tiempo (mseg) es: ",
-                                            str(result[0]))  
+                                            str(result[0]))
     else:
         sys.exit(0)
 sys.exit(0)
