@@ -113,7 +113,12 @@ while True:
         tag = input("Escriba un tag: ")
         pais = input("Escriba un país: ")
         print("Cargando información de los videos ....")
+    
+    else:
+        sys.exit(0)
+sys.exit(0)
 
+"""
     elif int(inputs[0]) == 6:
         size = input("Indique tamaño de la muestra: ")
         tiposort = input("Ingrese el tipo de sorteo deseado (insertion, shell, selection, quick o merge): ")
@@ -122,6 +127,4 @@ while True:
         if not (result is None):
             print("Para la muestra de", size, " elementos, el tiempo (mseg) es: ",
                                             str(result[0]))
-    else:
-        sys.exit(0)
-sys.exit(0)
+    """

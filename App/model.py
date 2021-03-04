@@ -136,7 +136,7 @@ def sortVideos(catalog, size, country, category_name, tiposort):
             elapsed_time_mseg = (stop_time - start_time)*1000
             return elapsed_time_mseg, sorted_list
 
-
+"""
 def sortVideosTest(catalog, size, tiposort):
     if catalog["videos"]["size"] < size:
         print("Excede el tamaño de la lista, ingrese un valor válido")
@@ -169,3 +169,4 @@ def sortVideosTest(catalog, size, tiposort):
             stop_time = time.process_time()
             elapsed_time_mseg = (stop_time - start_time)*1000
             return elapsed_time_mseg, sorted_list
+"""
