@@ -102,17 +102,14 @@ while True:
             printResults(result[1], int(size))
 
     elif int(inputs[0]) == 3:
-        # Por completar
         pais = input("Escriba un país: ")
         print("Cargando información del video ....")
 
     elif int(inputs[0]) == 4:
-        # Por completar
         categ = input("Escriba una categoría: ")
         print("Cargando información del video ....")
 
     elif int(inputs[0]) == 5:
-        # Por completar
         tag = input("Escriba un tag: ")
         pais = input("Escriba un país: ")
         print("Cargando información de los videos ....")
