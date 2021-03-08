@@ -90,6 +90,9 @@ def sacaridcategoria(catalogo, nombre_categoria):
 
 def cmpVideosByViews(video1, video2):
     return (int(video1["views"]) > int(video2["views"]))
+
+def cmpVideosByLikes(video1, video2):
+    return (int(video1["likes"]) > int(video2["likes"]))
 # Funciones de ordenamiento
 
 
@@ -170,3 +173,23 @@ def sortVideosTest(catalog, size, tiposort):
             elapsed_time_mseg = (stop_time - start_time)*1000
             return elapsed_time_mseg, sorted_list
 """
+def sortVideosLikes(catalog, size, tag):
+    catalog2 = lt.newList(catalog["videos"]["type"], catalog["videos"]["cmpfunction"])
+
+    if catalog["videos"]["type"] == "ARRAY_LIST":
+        for x in catalog["videos"]["elements"]:
+            if (tag in x["tags"]):
+                lt.addFirst(catalog2, x)
+    elif catalog["videos"]["type"] == "LINKED_LIST" or catalog["videos"]["type"] == "SINGLE_LINKED":
+        for x in range(catalog["videos"]["size"]):
+            if (tag in lt.getElement(catalog["videos"], x)["tags"]):
+                lt.addFirst(catalog2, lt.getElement(catalog["videos"], x))
+    if catalog2["size"] < size:
+        print("Excede el tamaño de la lista, ingrese un valor válido")
+    else:
+        sub_list = catalog2.copy()
+        start_time = time.process_time()
+        sorted_list = ms.sort(sub_list, cmpVideosByLikes)
+        stop_time = time.process_time()
+        elapsed_time_mseg = (stop_time - start_time)*1000
+        return elapsed_time_mseg, sorted_list

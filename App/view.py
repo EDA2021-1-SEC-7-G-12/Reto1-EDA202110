@@ -53,6 +53,20 @@ def printResults(ord_videos, mostrardos):
                   + video['dislikes'])
             i += 1
 
+def printResultsLikes(ord_videos, mostrardos):
+    size = lt.size(ord_videos)
+    if size >= mostrardos:
+        print("Los ", mostrardos, " videos con mas likes son:")
+        i = 1
+        while i <= mostrardos:
+            video = lt.getElement(ord_videos, i)
+            print(' Title: ' +
+                  video['title'] + ' Channel title: ' + video['channel_title']
+                  + ' Publish time: ' + video['publish_time'] + ' Views: ' +
+                  video['views'] + ' Likes: ' + video['likes'] + ' Dislikes: '
+                  + video['dislikes'] + ' tags: '
+                  + video['tags'])
+            i += 1
 
 def printMenu():
     print("Bienvenido")
@@ -113,19 +127,11 @@ while True:
 
     elif int(inputs[0]) == 5:
         # Por completar
+        size = input("Indique tamaño de la muestra: ")
         tag = input("Escriba un tag: ")
-        pais = input("Escriba un país: ")
         print("Cargando información de los videos ....")
-    
+        result = controller.sortVideosLikes(catalog, int(size), tag)
+        printResultsLikes(result[1], int(size))
     else:
         sys.exit(0)
 sys.exit(0)
-"""
-    elif int(inputs[0]) == 6:
-        size = input("Indique tamaño de la muestra: ")
-        tiposort = input("Ingrese el tipo de sorteo deseado (insertion, shell, selection, quick o merge): ")
-        print("Sorteando videos ....")
-        result = controller.sortVideosTest(catalog, int(size), tiposort)
-        if not (result is None):
-            print("Para la muestra de", size, " elementos, el tiempo (mseg) es: ",
-                                            str(result[0]))"""
