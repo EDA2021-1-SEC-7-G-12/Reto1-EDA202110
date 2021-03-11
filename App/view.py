@@ -126,7 +126,7 @@ while True:
         print("Sorteando videos ....")
         result = controller.sortVideos(catalog, int(size), pais, categ)
         if not (result is None):
-            print("Para la muestra de", size, " elementos, el tiempo (mseg) es: ",
+            print("Para la muestra de ", size, " elementos, el tiempo (mseg) es: ",
                                             str(result[0]))
             printResults(result[1], int(size))
 
