@@ -100,7 +100,7 @@ def cmpVideosByAppearances(video1, video2):
 # Funciones de ordenamiento
 
 
-def sortVideos(catalog, size, country, category_name, tiposort):
+def sortVideos(catalog, size, country, category_name):
     catalog2 = lt.newList(catalog["videos"]["type"], catalog["videos"]["cmpfunction"])
     idcategoria = sacaridcategoria(catalog, category_name)
     if catalog["videos"]["type"] == "ARRAY_LIST":
@@ -117,31 +117,10 @@ def sortVideos(catalog, size, country, category_name, tiposort):
         sub_list = lt.subList(catalog2, 1, size)
         sub_list = sub_list.copy()
         start_time = time.process_time()
-        if tiposort == "shell":
-            sorted_list = sa.sort(sub_list, cmpVideosByViews)
-            stop_time = time.process_time()
-            elapsed_time_mseg = (stop_time - start_time)*1000
-            return elapsed_time_mseg, sorted_list
-        elif tiposort == "insertion":
-            sorted_list = si.sort(sub_list, cmpVideosByViews)
-            stop_time = time.process_time()
-            elapsed_time_mseg = (stop_time - start_time)*1000
-            return elapsed_time_mseg, sorted_list
-        elif tiposort == "selection":
-            sorted_list = ss.sort(sub_list, cmpVideosByViews)
-            stop_time = time.process_time()
-            elapsed_time_mseg = (stop_time - start_time)*1000
-            return elapsed_time_mseg, sorted_list
-        elif tiposort == "merge":
-            sorted_list = ms.sort(sub_list, cmpVideosByViews)
-            stop_time = time.process_time()
-            elapsed_time_mseg = (stop_time - start_time)*1000
-            return elapsed_time_mseg, sorted_list
-        elif tiposort == "quick":
-            sorted_list = qs.sort(sub_list, cmpVideosByViews)
-            stop_time = time.process_time()
-            elapsed_time_mseg = (stop_time - start_time)*1000
-            return elapsed_time_mseg, sorted_list
+        sorted_list = ms.sort(sub_list, cmpVideosByViews)
+        stop_time = time.process_time()
+        elapsed_time_mseg = (stop_time - start_time)*1000
+        return elapsed_time_mseg, sorted_list
 
 
 def sortVideosLikes(catalog, size, tag):

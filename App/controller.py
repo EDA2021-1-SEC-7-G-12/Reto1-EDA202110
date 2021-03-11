@@ -66,8 +66,8 @@ def loadCategorias(catalogo):
 # Funciones de ordenamiento
 
 
-def sortVideos(catalog, size, country, category_name, tiposort):
-    return model.sortVideos(catalog, size, country, category_name, tiposort)
+def sortVideos(catalog, size, country, category_name):
+    return model.sortVideos(catalog, size, country, category_name)
 
 
 def sortVideosLikes(catalog, size, tag):
