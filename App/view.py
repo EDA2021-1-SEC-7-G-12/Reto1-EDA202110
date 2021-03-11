@@ -74,25 +74,6 @@ def printResultsLikes(ord_videos, mostrardos):
                 i += 1
             j += 1
 
-<<<<<<< HEAD
-
-def printResultsPaises(ord_videos):
-    size = lt.size(ord_videos)
-    listaid = []
-    if size >= mostrardos:
-        print("Los ", mostrardos, " videos con mas likes son:")
-        i = 1
-        j = 1
-        while i <= mostrardos:
-            video = lt.getElement(ord_videos, j)
-            if not video["video_id"] in listaid:
-                listaid.append(video["video_id"])
-                print(' Title: ' +
-                  video['title'] + ' Channel title: ' + video['channel_title']
-                  + ' Country: ' + video['country'] + 'Dias: ' )
-                i += 1
-            j += 1
-=======
 def printResultPais(video, dias):
     print(' Title: ' +
                   video['title'] + ' Channel title: ' + video['channel_title']
@@ -103,7 +84,6 @@ def printResultCateg(video, dias):
                   video['title'] + ' Channel title: ' + video['channel_title']
                   + ' category_id: ' + video['category_id'] + ' Dias: ' +
                   str(dias))
->>>>>>> 1d69ab415d9077a765f5f0fd557695710080e6bf
 
 def printMenu():
     print("Bienvenido")
