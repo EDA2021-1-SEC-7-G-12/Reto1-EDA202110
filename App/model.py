@@ -44,7 +44,7 @@ los mismos.
 # Construccion de modelos
 
 
-def NuevoCatalogo(tipo):
+def NuevoCatalogo():
     catalogo = {
         "videos": None,
         "categorias": None,
