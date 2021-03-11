@@ -53,6 +53,7 @@ def printResults(ord_videos, mostrardos):
                   + video['dislikes'])
             i += 1
 
+
 def printResultsLikes(ord_videos, mostrardos):
     size = lt.size(ord_videos)
     listaid = []
@@ -70,6 +71,24 @@ def printResultsLikes(ord_videos, mostrardos):
                   video['views'] + ' Likes: ' + video['likes'] + ' Dislikes: '
                   + video['dislikes'] + ' tags: '
                   + video['tags'])
+                i += 1
+            j += 1
+
+
+def printResultsPaises(ord_videos):
+    size = lt.size(ord_videos)
+    listaid = []
+    if size >= mostrardos:
+        print("Los ", mostrardos, " videos con mas likes son:")
+        i = 1
+        j = 1
+        while i <= mostrardos:
+            video = lt.getElement(ord_videos, j)
+            if not video["video_id"] in listaid:
+                listaid.append(video["video_id"])
+                print(' Title: ' +
+                  video['title'] + ' Channel title: ' + video['channel_title']
+                  + ' Country: ' + video['country'] + 'Dias: ' )
                 i += 1
             j += 1
 

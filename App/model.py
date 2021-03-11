@@ -91,6 +91,7 @@ def sacaridcategoria(catalogo, nombre_categoria):
 def cmpVideosByViews(video1, video2):
     return (int(video1["views"]) > int(video2["views"]))
 
+
 def cmpVideosByLikes(video1, video2):
     return (int(video1["likes"]) > int(video2["likes"]))
 # Funciones de ordenamiento
@@ -139,43 +140,10 @@ def sortVideos(catalog, size, country, category_name, tiposort):
             elapsed_time_mseg = (stop_time - start_time)*1000
             return elapsed_time_mseg, sorted_list
 
-"""
-def sortVideosTest(catalog, size, tiposort):
-    if catalog["videos"]["size"] < size:
-        print("Excede el tamaño de la lista, ingrese un valor válido")
-    else:
-        sub_list = lt.subList(catalog["videos"], 1, size)
-        sub_list = sub_list.copy()
-        start_time = time.process_time()
-        if tiposort == "shell":
-            sorted_list = sa.sort(sub_list, cmpVideosByViews)
-            stop_time = time.process_time()
-            elapsed_time_mseg = (stop_time - start_time)*1000
-            return elapsed_time_mseg, sorted_list
-        elif tiposort == "insertion":
-            sorted_list = si.sort(sub_list, cmpVideosByViews)
-            stop_time = time.process_time()
-            elapsed_time_mseg = (stop_time - start_time)*1000
-            return elapsed_time_mseg, sorted_list
-        elif tiposort == "selection":
-            sorted_list = ss.sort(sub_list, cmpVideosByViews)
-            stop_time = time.process_time()
-            elapsed_time_mseg = (stop_time - start_time)*1000
-            return elapsed_time_mseg, sorted_list
-        elif tiposort == "merge":
-            sorted_list = ms.sort(sub_list, cmpVideosByViews)
-            stop_time = time.process_time()
-            elapsed_time_mseg = (stop_time - start_time)*1000
-            return elapsed_time_mseg, sorted_list
-        elif tiposort == "quick":
-            sorted_list = qs.sort(sub_list, cmpVideosByViews)
-            stop_time = time.process_time()
-            elapsed_time_mseg = (stop_time - start_time)*1000
-            return elapsed_time_mseg, sorted_list
-"""
+
 def sortVideosLikes(catalog, size, tag):
     catalog2 = lt.newList(catalog["videos"]["type"], catalog["videos"]["cmpfunction"])
-
+    print(catalog)
     if catalog["videos"]["type"] == "ARRAY_LIST":
         for x in catalog["videos"]["elements"]:
             if (tag in x["tags"]):
