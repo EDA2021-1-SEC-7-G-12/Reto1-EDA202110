@@ -28,11 +28,7 @@
 import time
 import config as cf
 from DISClib.ADT import list as lt
-from DISClib.Algorithms.Sorting import shellsort as sa
-from DISClib.Algorithms.Sorting import insertionsort as si
-from DISClib.Algorithms.Sorting import selectionsort as ss
 from DISClib.Algorithms.Sorting import mergesort as ms
-from DISClib.Algorithms.Sorting import quicksort as qs
 assert cf
 
 """
@@ -107,10 +103,6 @@ def sortVideos(catalog, size, country, category_name):
         for x in catalog["videos"]["elements"]:
             if (x["category_id"] == idcategoria) and (x["country"] == country):
                 lt.addFirst(catalog2, x)
-    elif catalog["videos"]["type"] == "LINKED_LIST" or catalog["videos"]["type"] == "SINGLE_LINKED":
-        for x in range(catalog["videos"]["size"]):
-            if (lt.getElement(catalog["videos"], x)["category_id"] == idcategoria) and (lt.getElement(catalog["videos"], x)["country"] == country):
-                lt.addFirst(catalog2, lt.getElement(catalog["videos"], x))
     if catalog2["size"] < size:
         print("Excede el tamaño de la lista, ingrese un valor válido")
     else:
@@ -128,10 +120,6 @@ def sortVideosLikes(catalog, size, tag, pais):
         for x in catalog["videos"]["elements"]:
             if (tag in x["tags"]) and (x["country"] == pais):
                 lt.addFirst(catalog2, x)
-    elif catalog["videos"]["type"] == "LINKED_LIST" or catalog["videos"]["type"] == "SINGLE_LINKED":
-        for x in range(catalog["videos"]["size"]):
-            if (tag in lt.getElement(catalog["videos"], x)["tags"]):
-                lt.addFirst(catalog2, lt.getElement(catalog["videos"], x))
     if catalog2["size"] < size:
         print("Excede el tamaño de la lista, ingrese un valor válido")
     else:
@@ -149,7 +137,7 @@ def videos_a_dias_trending(videos):
         if not x["video_id"] == "#NAME?":
             if not x["video_id"] in listaids:
                 listaids.append(x["video_id"])
-                lt.addFirst(nodiccionario,{"id" : x["video_id"], "apariciones" : 1})
+                lt.addFirst(nodiccionario, {"id" : x["video_id"], "apariciones": 1})
             else:
                 for y in nodiccionario["elements"]:
                     if y["id"] == x["video_id"]:
@@ -157,16 +145,13 @@ def videos_a_dias_trending(videos):
     diccionariosorteado = ms.sort(nodiccionario, cmpVideosByAppearances)
     return diccionariosorteado
 
+
 def topdiastrendingporpais(catalog, pais):
     catalog2 = lt.newList(catalog["videos"]["type"], catalog["videos"]["cmpfunction"])
     if catalog["videos"]["type"] == "ARRAY_LIST":
         for x in catalog["videos"]["elements"]:
             if (pais == x["country"]):
                 lt.addFirst(catalog2, x)
-    elif catalog["videos"]["type"] == "LINKED_LIST" or catalog["videos"]["type"] == "SINGLE_LINKED":
-        for x in range(catalog["videos"]["size"]):
-            if (pais == lt.getElement(catalog["videos"], x)["country"]):
-                lt.addFirst(catalog2, lt.getElement(catalog["videos"], x))
     sub_list = catalog2.copy()
     respuesta = None
     sorteado = videos_a_dias_trending(sub_list)
@@ -175,6 +160,7 @@ def topdiastrendingporpais(catalog, pais):
             respuesta = x
     return respuesta , sorteado["elements"][0]["apariciones"]
 
+
 def topdiastrendingporcateg(catalog, categ):
     catalog2 = lt.newList(catalog["videos"]["type"], catalog["videos"]["cmpfunction"])
     idcategoria = sacaridcategoria(catalog, categ)
@@ -182,10 +168,6 @@ def topdiastrendingporcateg(catalog, categ):
         for x in catalog["videos"]["elements"]:
             if (x["category_id"] == idcategoria):
                 lt.addFirst(catalog2, x)
-    elif catalog["videos"]["type"] == "LINKED_LIST" or catalog["videos"]["type"] == "SINGLE_LINKED":
-        for x in range(catalog["videos"]["size"]):
-            if (lt.getElement(catalog["videos"], x)["category_id"] == idcategoria):
-                lt.addFirst(catalog2, lt.getElement(catalog["videos"], x))
     sub_list = catalog2.copy()
     respuesta = None
     sorteado = videos_a_dias_trending(sub_list)

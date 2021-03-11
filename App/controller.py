@@ -73,8 +73,10 @@ def sortVideos(catalog, size, country, category_name):
 def sortVideosLikes(catalog, size, tag, pais):
     return model.sortVideosLikes(catalog, size, tag, pais)
 
+
 def topdiastrendingporpais(catalog, pais):
     return model.topdiastrendingporpais(catalog, pais)
+
 
 def topdiastrendingporcateg(catalog, categ):
     return model.topdiastrendingporcateg(catalog, categ)

@@ -120,10 +120,9 @@ while True:
         print('Estos son los datos del primer video cargado. ' + str(catalog["videos"]["elements"][0]))
 
     elif int(inputs[0]) == 2:
-        # Por completar
         categ = input("Escriba una categoría: ")
         pais = input("Escriba un país: ")
-        size = input("Indique tamaño de la muestra: ")
+        size = input("Indique el numero de videos que quiere consultar: ")
         print("Sorteando videos ....")
         result = controller.sortVideos(catalog, int(size), pais, categ)
         if not (result is None):
@@ -132,20 +131,18 @@ while True:
             printResults(result[1], int(size))
 
     elif int(inputs[0]) == 3:
-        # Por completar
         pais = input("Escriba un país: ")
         print("Cargando información del video ....")
         resultado = controller.topdiastrendingporpais(catalog, pais)
-        printResultPais(resultado[0],resultado[1])
+        printResultPais(resultado[0], resultado[1])
 
     elif int(inputs[0]) == 4:
-        # Por completar
         categ = input("Escriba una categoría: ")
         print("Cargando información del video ....")
         resultado = controller.topdiastrendingporcateg(catalog, categ)
-        printResultCateg(resultado[0],resultado[1])
+        printResultCateg(resultado[0], resultado[1])
+
     elif int(inputs[0]) == 5:
-        # Por completar
         size = input("Indique el numero de videos que quiere consultar: ")
         tag = input("Escriba un tag: ")
         pais = input("Escriba un pais: ")
