@@ -124,9 +124,8 @@ while True:
         categ = input("Escriba una categoría: ")
         pais = input("Escriba un país: ")
         size = input("Indique tamaño de la muestra: ")
-        tiposort = input("Ingrese el tipo de sorteo deseado (insertion, shell, selection, quick o merge): ")
         print("Sorteando videos ....")
-        result = controller.sortVideos(catalog, int(size), pais, categ, tiposort)
+        result = controller.sortVideos(catalog, int(size), pais, categ)
         if not (result is None):
             print("Para la muestra de", size, " elementos, el tiempo (mseg) es: ",
                                             str(result[0]))
