@@ -114,8 +114,7 @@ def sortVideos(catalog, size, country, category_name):
     if catalog2["size"] < size:
         print("Excede el tamaño de la lista, ingrese un valor válido")
     else:
-        sub_list = lt.subList(catalog2, 1, size)
-        sub_list = sub_list.copy()
+        sub_list = catalog2.copy()
         start_time = time.process_time()
         sorted_list = ms.sort(sub_list, cmpVideosByViews)
         stop_time = time.process_time()
@@ -123,12 +122,11 @@ def sortVideos(catalog, size, country, category_name):
         return elapsed_time_mseg, sorted_list
 
 
-def sortVideosLikes(catalog, size, tag):
+def sortVideosLikes(catalog, size, tag, pais):
     catalog2 = lt.newList(catalog["videos"]["type"], catalog["videos"]["cmpfunction"])
-    print(catalog)
     if catalog["videos"]["type"] == "ARRAY_LIST":
         for x in catalog["videos"]["elements"]:
-            if (tag in x["tags"]):
+            if (tag in x["tags"]) and (x["country"] == pais):
                 lt.addFirst(catalog2, x)
     elif catalog["videos"]["type"] == "LINKED_LIST" or catalog["videos"]["type"] == "SINGLE_LINKED":
         for x in range(catalog["videos"]["size"]):

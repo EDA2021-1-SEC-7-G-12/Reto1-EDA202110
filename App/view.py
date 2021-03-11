@@ -146,10 +146,11 @@ while True:
         printResultCateg(resultado[0],resultado[1])
     elif int(inputs[0]) == 5:
         # Por completar
-        size = input("Indique tamaño de la muestra: ")
+        size = input("Indique el numero de videos que quiere consultar: ")
         tag = input("Escriba un tag: ")
+        pais = input("Escriba un pais: ")
         print("Cargando información de los videos ....")
-        result = controller.sortVideosLikes(catalog, int(size), tag)
+        result = controller.sortVideosLikes(catalog, int(size), tag, pais)
         printResultsLikes(result[1], int(size))
     else:
         sys.exit(0)
