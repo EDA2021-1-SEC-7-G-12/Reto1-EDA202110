@@ -99,8 +99,8 @@ def loadData(catalog):
     controller.loadData(catalog)
 
 
-def initCatalog(tipo):
-    return controller.initCatalog(tipo)
+def initCatalog():
+    return controller.initCatalog()
 
 
 catalog = None
@@ -112,9 +112,8 @@ while True:
     printMenu()
     inputs = input('Seleccione una opción para continuar\n')
     if int(inputs[0]) == 1:
-        tipo = input("Escoja el tipo de representación de la lista (ARRAY_LIST o LINKED_LIST): ")
         print("Cargando información de los archivos ....")
-        catalog = initCatalog(tipo)
+        catalog = initCatalog()
         loadData(catalog)
         print('Videos cargados: ' + str(lt.size(catalog['videos'])))
         print('Categorias cargadas: ' + str(lt.size(catalog['categorias'])))

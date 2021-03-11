@@ -49,8 +49,8 @@ def NuevoCatalogo(tipo):
         "videos": None,
         "categorias": None,
     }
-    catalogo["videos"] = lt.newList(tipo)
-    catalogo["categorias"] = lt.newList(tipo)
+    catalogo["videos"] = lt.newList("ARRAY_LIST")
+    catalogo["categorias"] = lt.newList("ARRAY_LIST")
     return catalogo
 
 # Funciones para agregar informacion al catalogo
