@@ -94,6 +94,9 @@ def cmpVideosByViews(video1, video2):
 
 def cmpVideosByLikes(video1, video2):
     return (int(video1["likes"]) > int(video2["likes"]))
+
+def cmpVideosByAppearances(video1, video2):
+    return (int(video1["apariciones"]) > int(video2["apariciones"]))
 # Funciones de ordenamiento
 
 
@@ -161,3 +164,55 @@ def sortVideosLikes(catalog, size, tag):
         stop_time = time.process_time()
         elapsed_time_mseg = (stop_time - start_time)*1000
         return elapsed_time_mseg, sorted_list
+
+def videos_a_dias_trending(videos):
+    nodiccionario = lt.newList("ARRAY_LIST")
+    listaids = []
+    for x in videos["elements"]:
+        if not x["video_id"] == "#NAME?":
+            if not x["video_id"] in listaids:
+                listaids.append(x["video_id"])
+                lt.addFirst(nodiccionario,{"id" : x["video_id"], "apariciones" : 1})
+            else:
+                for y in nodiccionario["elements"]:
+                    if y["id"] == x["video_id"]:
+                        y["apariciones"] += 1
+    diccionariosorteado = ms.sort(nodiccionario, cmpVideosByAppearances)
+    return diccionariosorteado
+
+def topdiastrendingporpais(catalog, pais):
+    catalog2 = lt.newList(catalog["videos"]["type"], catalog["videos"]["cmpfunction"])
+    if catalog["videos"]["type"] == "ARRAY_LIST":
+        for x in catalog["videos"]["elements"]:
+            if (pais == x["country"]):
+                lt.addFirst(catalog2, x)
+    elif catalog["videos"]["type"] == "LINKED_LIST" or catalog["videos"]["type"] == "SINGLE_LINKED":
+        for x in range(catalog["videos"]["size"]):
+            if (pais == lt.getElement(catalog["videos"], x)["country"]):
+                lt.addFirst(catalog2, lt.getElement(catalog["videos"], x))
+    sub_list = catalog2.copy()
+    respuesta = None
+    sorteado = videos_a_dias_trending(sub_list)
+    for x in sub_list["elements"]:
+        if x["video_id"] == sorteado["elements"][0]["id"]:
+            respuesta = x
+    return respuesta , sorteado["elements"][0]["apariciones"]
+
+def topdiastrendingporcateg(catalog, categ):
+    catalog2 = lt.newList(catalog["videos"]["type"], catalog["videos"]["cmpfunction"])
+    idcategoria = sacaridcategoria(catalog, categ)
+    if catalog["videos"]["type"] == "ARRAY_LIST":
+        for x in catalog["videos"]["elements"]:
+            if (x["category_id"] == idcategoria):
+                lt.addFirst(catalog2, x)
+    elif catalog["videos"]["type"] == "LINKED_LIST" or catalog["videos"]["type"] == "SINGLE_LINKED":
+        for x in range(catalog["videos"]["size"]):
+            if (lt.getElement(catalog["videos"], x)["category_id"] == idcategoria):
+                lt.addFirst(catalog2, lt.getElement(catalog["videos"], x))
+    sub_list = catalog2.copy()
+    respuesta = None
+    sorteado = videos_a_dias_trending(sub_list)
+    for x in sub_list["elements"]:
+        if x["video_id"] == sorteado["elements"][0]["id"]:
+            respuesta = x
+    return respuesta , sorteado["elements"][0]["apariciones"]

@@ -74,6 +74,7 @@ def printResultsLikes(ord_videos, mostrardos):
                 i += 1
             j += 1
 
+<<<<<<< HEAD
 
 def printResultsPaises(ord_videos):
     size = lt.size(ord_videos)
@@ -91,6 +92,18 @@ def printResultsPaises(ord_videos):
                   + ' Country: ' + video['country'] + 'Dias: ' )
                 i += 1
             j += 1
+=======
+def printResultPais(video, dias):
+    print(' Title: ' +
+                  video['title'] + ' Channel title: ' + video['channel_title']
+                  + ' Country: ' + video['country'] + ' Dias: ' +
+                  str(dias))
+def printResultCateg(video, dias):
+    print(' Title: ' +
+                  video['title'] + ' Channel title: ' + video['channel_title']
+                  + ' category_id: ' + video['category_id'] + ' Dias: ' +
+                  str(dias))
+>>>>>>> 1d69ab415d9077a765f5f0fd557695710080e6bf
 
 def printMenu():
     print("Bienvenido")
@@ -143,12 +156,15 @@ while True:
         # Por completar
         pais = input("Escriba un país: ")
         print("Cargando información del video ....")
+        resultado = controller.topdiastrendingporpais(catalog, pais)
+        printResultPais(resultado[0],resultado[1])
 
     elif int(inputs[0]) == 4:
         # Por completar
         categ = input("Escriba una categoría: ")
         print("Cargando información del video ....")
-
+        resultado = controller.topdiastrendingporcateg(catalog, categ)
+        printResultCateg(resultado[0],resultado[1])
     elif int(inputs[0]) == 5:
         # Por completar
         size = input("Indique tamaño de la muestra: ")
