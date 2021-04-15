@@ -96,7 +96,7 @@ def printMenu():
 
 
 def loadData(catalog):
-    controller.loadData(catalog)
+    return controller.loadData(catalog)
 
 
 def initCatalog():
@@ -114,11 +114,12 @@ while True:
     if int(inputs[0]) == 1:
         print("Cargando información de los archivos ....")
         catalog = initCatalog()
-        loadData(catalog)
+        datos = loadData(catalog)
         print('Videos cargados: ' + str(lt.size(catalog['videos'])))
         print('Categorias cargadas: ' + str(lt.size(catalog['categorias'])))
         print('Estos son los datos del primer video cargado. ' + str(catalog["videos"]["elements"][0]))
-
+        print("Tiempo [ms]: ", f"{datos[1]:.3f}", "  ||  ",
+              "Memoria [kB]: ", f"{datos[0]:.3f}")
     elif int(inputs[0]) == 2:
         categ = input("Escriba una categoría: ")
         pais = input("Escriba un país: ")
@@ -127,28 +128,33 @@ while True:
         result = controller.sortVideos(catalog, int(size), pais, categ)
         if not (result is None):
             print("Para la muestra de ", size, " elementos, el tiempo (mseg) es: ",
-                                            str(result[0]))
-            printResults(result[1], int(size))
-
+                                            str(result[0][0]))
+            printResults(result[0][1], int(size))
+        print("Tiempo [ms]: ", f"{result[2]:.3f}", "  ||  ",
+              "Memoria [kB]: ", f"{result[1]:.3f}")
     elif int(inputs[0]) == 3:
         pais = input("Escriba un país: ")
         print("Cargando información del video ....")
         resultado = controller.topdiastrendingporpais(catalog, pais)
-        printResultPais(resultado[0], resultado[1])
-
+        printResultPais(resultado[0][0], resultado[0][1])
+        print("Tiempo [ms]: ", f"{resultado[2]:.3f}", "  ||  ",
+              "Memoria [kB]: ", f"{resultado[1]:.3f}")
     elif int(inputs[0]) == 4:
         categ = input("Escriba una categoría: ")
         print("Cargando información del video ....")
         resultado = controller.topdiastrendingporcateg(catalog, categ)
-        printResultCateg(resultado[0], resultado[1])
-
+        printResultCateg(resultado[0][0], resultado[0][1])
+        print("Tiempo [ms]: ", f"{resultado[2]:.3f}", "  ||  ",
+              "Memoria [kB]: ", f"{resultado[1]:.3f}")
     elif int(inputs[0]) == 5:
         size = input("Indique el numero de videos que quiere consultar: ")
         tag = input("Escriba un tag: ")
         pais = input("Escriba un pais: ")
         print("Cargando información de los videos ....")
         result = controller.sortVideosLikes(catalog, int(size), tag, pais)
-        printResultsLikes(result[1], int(size))
+        printResultsLikes(result[0][1], int(size))
+        print("Tiempo [ms]: ", f"{resultado[2]:.3f}", "  ||  ",
+              "Memoria [kB]: ", f"{resultado[1]:.3f}")
     else:
         sys.exit(0)
 sys.exit(0)
