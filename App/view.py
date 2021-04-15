@@ -153,8 +153,8 @@ while True:
         print("Cargando información de los videos ....")
         result = controller.sortVideosLikes(catalog, int(size), tag, pais)
         printResultsLikes(result[0][1], int(size))
-        print("Tiempo [ms]: ", f"{resultado[2]:.3f}", "  ||  ",
-              "Memoria [kB]: ", f"{resultado[1]:.3f}")
+        print("Tiempo [ms]: ", f"{result[2]:.3f}", "  ||  ",
+              "Memoria [kB]: ", f"{result[1]:.3f}")
     else:
         sys.exit(0)
 sys.exit(0)
